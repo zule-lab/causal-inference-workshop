@@ -1,7 +1,9 @@
 ---
-title: "Causal Inference & DAGs in Ecology"
+title: "Causal Inference & DAGs"
 date: "March 11, 2025"
-format: revealjs
+format:
+  revealjs:
+    theme: dark
 editor: visual
 ---
 
@@ -23,7 +25,7 @@ editor: visual
 
 ::: columns
 ::: {.column width="90%"}
-::: {style="background-color: #c0c0beff; opacity: 90%"}
+::: {style="background-color: #000000; opacity: 90%"}
 -   the beauty of causal inference is that it relies on concepts that come very naturally to the human brain and is founded on using the expert scientific knowledge that every scientist brings to their studies
 
 -   THIS DOES NOT CHANGE EVERYTHING - just gives you a framework to easily express what you already feel and know
@@ -35,16 +37,13 @@ editor: visual
 
 ::: columns
 ::: {.column width="70%"}
-::: {.incremental}
+::: incremental
 -   the study of causes and effects: does X cause a change in Y?
 
 -   is this different from correlation?
 
     -   a rooster cawing is highly correlated with the sun rise - did the rooster cause the sun to rise?
-
--   why do we not talk or learn about causation?
-
-    -   the invention of correlation, eugenics, Pearson, drama, lack of mathematical tools
+    -   <https://www.tylervigen.com/spurious-correlations>
 :::
 :::
 
@@ -53,22 +52,118 @@ editor: visual
 :::
 :::
 
-## Who uses it?
+## Why don't we talk or learn about causation?
 
-::: {.incremental}
+-   Pearson & Galton, founders of modern statistics, failed in creating the tools needed for causal inference and subsequently decided that it was impossible and "unscientific"
+
+    -   they used their enormous influence to teach generations of scientists this and attack anyone who opposed them
+
+-   Judea Pearl invented the math required to answer causal questions only \~ 40 years ago! Science is slow!
+
+-   causation is not controversial - we are just transitioning
+
+## What is causal inference NOT?
+
+-   <t style = "color: #f44336"> **prediction!! forecasting!!** </t>
+
+<!-- -->
+
+-   if we want to use our models to estimate data in places or times that we do not have data for, but we DO NOT CARE about the relationships between the things in our model, that is prediction and not causal inference
+
+-   prediction is cool!! it is however, not what we do in our lab (for now...)
+
+-   AIC is a tool for measuring the predictive power of your model - it is not appropriate for our purposes
+
+## Who uses causal inference?
+
+::: incremental
 -   Ecology: [Arif & MacNeil 2022](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1002/ecm.1554), [Siegel & Dee, 2025](https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.70053), [Laubach et al, 2021](https://royalsocietypublishing.org/doi/full/10.1098/rspb.2020.2815)
 -   Public health: [Glass et al, 2013](https://www.annualreviews.org/content/journals/10.1146/annurev-publhealth-031811-124606), [Matthay & Glymour, 2022](https://link.springer.com/article/10.1007/s40471-022-00288-7)
 -   Sociologists & ethnography: [Knight & Winship 2013](https://link.springer.com/article/10.1007/s40471-022-00288-7), [Brett & Silver 2024](https://link.springer.com/article/10.1007/s12108-024-09632-4), [Snodgrass et al 2024](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0302857)
 -   Machine learning
 -   <t style = "color: #f44336"> **Anyone who has observational data (and sometimes experimental data) and wants to understand a cause and effect relationship in their system** </t>
-
 :::
 
-## When do people use it?
+## When do people use causal inference?
 
-## Why do people use it?
+::: columns
+::: {.column width="50%"}
+Level 1: *association*
 
-## How DAGs support causal inference
+-   how are the variables related? how does changing X shift my belief in Y?
+
+-   example: what does canopy cover tell us about air temperature?
+:::
+
+::: {.column width="50%"}
+![Judea Pearl's Book of Why](presentation_imgs/ladder-causation.png){width="75%"}
+:::
+:::
+
+## When do people use causal inference?
+
+::: columns
+::: {.column width="50%"}
+Level 2: *intervention*
+
+-   what would Y be if i do X?
+
+-   example: how will bird species richness increase if i move from a park to a backyard?
+:::
+
+::: {.column width="50%"}
+![Judea Pearl's Book of Why](presentation_imgs/ladder-causation.png){width="75%"}
+:::
+:::
+
+## When do people use causal inference?
+
+::: columns
+::: {.column width="50%"}
+Level 3: *counterfactuals*
+
+-   what if X had not occurred? is it X that caused Y?
+
+-   example: would survey respondents prefer different green space features if they lived in a different borough?
+:::
+
+::: {.column width="50%"}
+![Judea Pearl's Book of Why](presentation_imgs/ladder-causation.png){width="75%"}
+:::
+:::
+
+## How do I do causal inference? {.smaller}
+
+::: columns
+::: {.column width="40%"}
+-   DAGs (directed acyclic graphs)!
+
+-   arrows indicate a causal relationship from one variable to another
+
+-   use your expert knowledge + literature to outline your system with your hypotheses and assumptions (you already make assumptions now, you just don't visualize them!)
+
+-   adjust your statistical test (e.g., model) using your DAG
+:::
+
+::: {.column width="60%"}
+![](presentation_imgs/ch2_dag.png)
+:::
+:::
+
+## Why do DAGs matter?
+
+-   <t style = "color: #f44336">**putting everything in your model does not test the relationship(s) you are interested in**</t>
+
+::: columns
+::: {.column width="40%"}
+-   complex systems have *confounders* that mislead us and that we need to adjust for
+-   adjustments are dependent on our DAG and the variable of interest
+:::
+
+::: {.column width="60%"}
+![Statistical Rethinking, Lecture 5](presentation_imgs/confounders.png)
+:::
+:::
 
 ## Confounders - fork
 
@@ -91,3 +186,4 @@ editor: visual
 ## Table 2 fallacy
 
 ## Resources
+
