@@ -165,13 +165,16 @@ Level 3: *counterfactuals*
 :::
 :::
 
-## Confounders - fork
+## Confounders: fork {.scrollable}
 
-## Confounders - pipe
 
-## Confounders - collider
 
-## Confounders - descendant
+
+## Confounders: pipe {.scrollable}
+
+## Confounders: collider {.scrollable}
+
+## Confounders: descendant {.scrollable}
 
 ## Adjusting your models for confounders
 
