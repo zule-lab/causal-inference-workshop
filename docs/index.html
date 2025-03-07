@@ -9,7 +9,8 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>Causal Inference Workshop – Causal Inference</title>
+  <meta name="dcterms.date" content="2025-03-11">
+  <title>Causal Inference Workshop – Causal Inference &amp; DAGs in Ecology</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -126,14 +127,121 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Causal Inference</h1>
+  <h1 class="title">Causal Inference &amp; DAGs in Ecology</h1>
 
 <div class="quarto-title-authors">
 </div>
 
+  <p class="date">2025-03-11</p>
 </section>
-<section id="first-slide" class="slide level2">
-<h2>first slide</h2>
+<section id="this-workshop-is-plagiarism" class="slide level2">
+<h2>This workshop is plagiarism!!</h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<ul>
+<li>almost all of this content comes from Statistical Rethinking, a textbook and online course that is completely free and available by Richard McElreath</li>
+<li>a good portion also comes from The Book of Why and other works by Judea Pearl</li>
+<li>there are many scholars, ecologists and otherwise who use this method and explain it better than I ever will - resources at the end</li>
+</ul>
+</div><div class="column" style="width:20%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/tbow_rethinking.png" class="quarto-figure quarto-figure-center" style="height:150.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="lets-not-panic" class="slide level2" data-background-image="presentation_imgs/stop.jpg">
+<h2>Let’s not panic</h2>
+<div class="columns">
+<div class="column" style="width:90%;">
+<div style="background-color: #c0c0beff; opacity: 90%">
+<ul>
+<li><p>the beauty of causal inference is that it relies on concepts that come very naturally to the human brain and is founded on using the expert scientific knowledge that every scientist brings to their studies</p></li>
+<li><p>THIS DOES NOT CHANGE EVERYTHING - just gives you a framework to easily express what you already feel and know</p></li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="what-is-causal-inference" class="slide level2 incremental">
+<h2>What is causal inference?</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div>
+<ul>
+<li class="fragment"><p>the study of causes and effects: does X cause a change in Y?</p></li>
+<li class="fragment"><p>is this different from correlation?</p>
+<ul>
+<li class="fragment">a rooster cawing is highly correlated with the sun rise - did the rooster cause the sun to rise?</li>
+</ul></li>
+<li class="fragment"><p>why do we not talk or learn about causation?</p>
+<ul>
+<li class="fragment">the invention of correlation, eugenics, Pearson, drama, lack of mathematical tools</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/causality_2009.png"></p>
+<figcaption><img data-src="https://bayes.cs.ucla.edu/BOOK-2K/.png" alt="Causality by Judea Pearl"></figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="who-uses-it" class="slide level2">
+<h2>Who uses it?</h2>
+<div>
+<ul>
+<li class="fragment">Ecology: <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1002/ecm.1554">Arif &amp; MacNeil 2022</a>, <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.70053">Siegel &amp; Dee, 2025</a>, <a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2020.2815">Laubach et al, 2021</a></li>
+<li class="fragment">Public health: <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-publhealth-031811-124606">Glass et al, 2013</a>, <a href="https://link.springer.com/article/10.1007/s40471-022-00288-7">Matthay &amp; Glymour, 2022</a></li>
+<li class="fragment">Sociologists &amp; ethnography: <a href="https://link.springer.com/article/10.1007/s40471-022-00288-7">Knight &amp; Winship 2013</a>, <a href="https://link.springer.com/article/10.1007/s12108-024-09632-4">Brett &amp; Silver 2024</a>, <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0302857">Snodgrass et al 2024</a></li>
+<li class="fragment">Machine learning</li>
+<li class="fragment"><t style="color: #f44336"> <strong>Anyone who has observational data (and sometimes experimental data) and wants to understand a cause and effect relationship in their system</strong> </t></li>
+</ul>
+</div>
+</section>
+<section id="when-do-people-use-it" class="slide level2">
+<h2>When do people use it?</h2>
+</section>
+<section id="why-do-people-use-it" class="slide level2">
+<h2>Why do people use it?</h2>
+</section>
+<section id="how-dags-support-causal-inference" class="slide level2">
+<h2>How DAGs support causal inference</h2>
+</section>
+<section id="confounders---fork" class="slide level2">
+<h2>Confounders - fork</h2>
+</section>
+<section id="confounders---pipe" class="slide level2">
+<h2>Confounders - pipe</h2>
+</section>
+<section id="confounders---collider" class="slide level2">
+<h2>Confounders - collider</h2>
+</section>
+<section id="confounders---descendant" class="slide level2">
+<h2>Confounders - descendant</h2>
+</section>
+<section id="confounders---post-treatment-bias" class="slide level2">
+<h2>Confounders - post-treatment bias</h2>
+</section>
+<section id="do-calculus" class="slide level2">
+<h2>do-calculus</h2>
+</section>
+<section id="backdoor-paths" class="slide level2">
+<h2>Backdoor paths</h2>
+</section>
+<section id="closing-backdoor-paths" class="slide level2">
+<h2>Closing backdoor paths</h2>
+</section>
+<section id="dagitty.net---example" class="slide level2">
+<h2>dagitty.net - example</h2>
+</section>
+<section id="table-2-fallacy" class="slide level2">
+<h2>Table 2 fallacy</h2>
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
 
 
 </section>
