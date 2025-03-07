@@ -6,11 +6,11 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
   <meta name="dcterms.date" content="2025-03-11">
-  <title>Causal Inference Workshop – Causal Inference &amp; DAGs in Ecology</title>
+  <title>Causal Inference Workshop – Causal Inference &amp; DAGs</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-5b48f34d633aed70c74c672477009ffc.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -122,12 +122,12 @@
     }
   </style>
 </head>
-<body class="quarto-light">
+<body class="quarto-dark">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Causal Inference &amp; DAGs in Ecology</h1>
+  <h1 class="title">Causal Inference &amp; DAGs</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -155,7 +155,7 @@
 <h2>Let’s not panic</h2>
 <div class="columns">
 <div class="column" style="width:90%;">
-<div style="background-color: #c0c0beff; opacity: 90%">
+<div style="background-color: #000000; opacity: 90%">
 <ul>
 <li><p>the beauty of causal inference is that it relies on concepts that come very naturally to the human brain and is founded on using the expert scientific knowledge that every scientist brings to their studies</p></li>
 <li><p>THIS DOES NOT CHANGE EVERYTHING - just gives you a framework to easily express what you already feel and know</p></li>
@@ -173,10 +173,7 @@
 <li class="fragment"><p>is this different from correlation?</p>
 <ul>
 <li class="fragment">a rooster cawing is highly correlated with the sun rise - did the rooster cause the sun to rise?</li>
-</ul></li>
-<li class="fragment"><p>why do we not talk or learn about causation?</p>
-<ul>
-<li class="fragment">the invention of correlation, eugenics, Pearson, drama, lack of mathematical tools</li>
+<li class="fragment"><a href="https://www.tylervigen.com/spurious-correlations" class="uri">https://www.tylervigen.com/spurious-correlations</a></li>
 </ul></li>
 </ul>
 </div>
@@ -189,8 +186,31 @@
 </div>
 </div></div>
 </section>
-<section id="who-uses-it" class="slide level2">
-<h2>Who uses it?</h2>
+<section id="why-dont-we-talk-or-learn-about-causation" class="slide level2">
+<h2>Why don’t we talk or learn about causation?</h2>
+<ul>
+<li><p>Pearson &amp; Galton, founders of modern statistics, failed in creating the tools needed for causal inference and subsequently decided that it was impossible and “unscientific”</p>
+<ul>
+<li>they used their enormous influence to teach generations of scientists this and attack anyone who opposed them</li>
+</ul></li>
+<li><p>Judea Pearl invented the math required to answer causal questions only ~ 40 years ago! Science is slow!</p></li>
+<li><p>causation is not controversial - we are just transitioning</p></li>
+</ul>
+</section>
+<section id="what-is-causal-inference-not" class="slide level2">
+<h2>What is causal inference NOT?</h2>
+<ul>
+<li><t style="color: #f44336"> <strong>prediction!! forecasting!!</strong> </t></li>
+</ul>
+<!-- -->
+<ul>
+<li><p>if we want to use our models to estimate data in places or times that we do not have data for, but we DO NOT CARE about the relationships between the things in our model, that is prediction and not causal inference</p></li>
+<li><p>prediction is cool!! it is however, not what we do in our lab (for now…)</p></li>
+<li><p>AIC is a tool for measuring the predictive power of your model - it is not appropriate for our purposes</p></li>
+</ul>
+</section>
+<section id="who-uses-causal-inference" class="slide level2">
+<h2>Who uses causal inference?</h2>
 <div>
 <ul>
 <li class="fragment">Ecology: <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1002/ecm.1554">Arif &amp; MacNeil 2022</a>, <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.70053">Siegel &amp; Dee, 2025</a>, <a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2020.2815">Laubach et al, 2021</a></li>
@@ -201,14 +221,93 @@
 </ul>
 </div>
 </section>
-<section id="when-do-people-use-it" class="slide level2">
-<h2>When do people use it?</h2>
+<section id="when-do-people-use-causal-inference" class="slide level2">
+<h2>When do people use causal inference?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Level 1: <em>association</em></p>
+<ul>
+<li><p>how are the variables related? how does changing X shift my belief in Y?</p></li>
+<li><p>example: what does canopy cover tell us about air temperature?</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/ladder-causation.png" style="width:75.0%"></p>
+<figcaption>Judea Pearl’s Book of Why</figcaption>
+</figure>
+</div>
+</div></div>
 </section>
-<section id="why-do-people-use-it" class="slide level2">
-<h2>Why do people use it?</h2>
+<section id="when-do-people-use-causal-inference-1" class="slide level2">
+<h2>When do people use causal inference?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Level 2: <em>intervention</em></p>
+<ul>
+<li><p>what would Y be if i do X?</p></li>
+<li><p>example: how will bird species richness increase if i move from a park to a backyard?</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/ladder-causation.png" style="width:75.0%"></p>
+<figcaption>Judea Pearl’s Book of Why</figcaption>
+</figure>
+</div>
+</div></div>
 </section>
-<section id="how-dags-support-causal-inference" class="slide level2">
-<h2>How DAGs support causal inference</h2>
+<section id="when-do-people-use-causal-inference-2" class="slide level2">
+<h2>When do people use causal inference?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Level 3: <em>counterfactuals</em></p>
+<ul>
+<li><p>what if X had not occurred? is it X that caused Y?</p></li>
+<li><p>example: would survey respondents prefer different green space features if they lived in a different borough?</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/ladder-causation.png" style="width:75.0%"></p>
+<figcaption>Judea Pearl’s Book of Why</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="how-do-i-do-causal-inference" class="slide level2 smaller">
+<h2>How do I do causal inference?</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li><p>DAGs (directed acyclic graphs)!</p></li>
+<li><p>arrows indicate a causal relationship from one variable to another</p></li>
+<li><p>use your expert knowledge + literature to outline your system with your hypotheses and assumptions (you already make assumptions now, you just don’t visualize them!)</p></li>
+<li><p>adjust your statistical test (e.g., model) using your DAG</p></li>
+</ul>
+</div><div class="column" style="width:60%;">
+<p><img data-src="presentation_imgs/ch2_dag.png"></p>
+</div></div>
+</section>
+<section id="why-do-dags-matter" class="slide level2">
+<h2>Why do DAGs matter?</h2>
+<ul>
+<li><t style="color: #f44336"><strong>putting everything in your model does not test the relationship(s) you are interested in</strong></t></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>complex systems have <em>confounders</em> that mislead us and that we need to adjust for</li>
+<li>adjustments are dependent on our DAG and the variable of interest</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/confounders.png"></p>
+<figcaption>Statistical Rethinking, Lecture 5</figcaption>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="confounders---fork" class="slide level2">
 <h2>Confounders - fork</h2>

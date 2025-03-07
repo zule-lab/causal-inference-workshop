@@ -2,126 +2,154 @@
   {
     "objectID": "index.html#this-workshop-is-plagiarism",
     "href": "index.html#this-workshop-is-plagiarism",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "This workshop is plagiarism!!",
     "text": "This workshop is plagiarism!!\n\n\n\nalmost all of this content comes from Statistical Rethinking, a textbook and online course that is completely free and available by Richard McElreath\na good portion also comes from The Book of Why and other works by Judea Pearl\nthere are many scholars, ecologists and otherwise who use this method and explain it better than I ever will - resources at the end"
   },
   {
     "objectID": "index.html#lets-not-panic",
     "href": "index.html#lets-not-panic",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Let’s not panic",
     "text": "Let’s not panic\n\n\n\n\nthe beauty of causal inference is that it relies on concepts that come very naturally to the human brain and is founded on using the expert scientific knowledge that every scientist brings to their studies\nTHIS DOES NOT CHANGE EVERYTHING - just gives you a framework to easily express what you already feel and know"
   },
   {
     "objectID": "index.html#what-is-causal-inference",
     "href": "index.html#what-is-causal-inference",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "What is causal inference?",
-    "text": "What is causal inference?\n\n\n\n\nthe study of causes and effects: does X cause a change in Y?\nis this different from correlation?\n\na rooster cawing is highly correlated with the sun rise - did the rooster cause the sun to rise?\n\nwhy do we not talk or learn about causation?\n\nthe invention of correlation, eugenics, Pearson, drama, lack of mathematical tools"
+    "text": "What is causal inference?\n\n\n\n\nthe study of causes and effects: does X cause a change in Y?\nis this different from correlation?\n\na rooster cawing is highly correlated with the sun rise - did the rooster cause the sun to rise?\nhttps://www.tylervigen.com/spurious-correlations"
   },
   {
-    "objectID": "index.html#who-uses-it",
-    "href": "index.html#who-uses-it",
-    "title": "Causal Inference & DAGs in Ecology",
-    "section": "Who uses it?",
-    "text": "Who uses it?\n\n\nEcology: Arif & MacNeil 2022, Siegel & Dee, 2025, Laubach et al, 2021\nPublic health: Glass et al, 2013, Matthay & Glymour, 2022\nSociologists & ethnography: Knight & Winship 2013, Brett & Silver 2024, Snodgrass et al 2024\nMachine learning\n Anyone who has observational data (and sometimes experimental data) and wants to understand a cause and effect relationship in their system"
+    "objectID": "index.html#why-dont-we-talk-or-learn-about-causation",
+    "href": "index.html#why-dont-we-talk-or-learn-about-causation",
+    "title": "Causal Inference & DAGs",
+    "section": "Why don’t we talk or learn about causation?",
+    "text": "Why don’t we talk or learn about causation?\n\nPearson & Galton, founders of modern statistics, failed in creating the tools needed for causal inference and subsequently decided that it was impossible and “unscientific”\n\nthey used their enormous influence to teach generations of scientists this and attack anyone who opposed them\n\nJudea Pearl invented the math required to answer causal questions only ~ 40 years ago! Science is slow!\ncausation is not controversial - we are just transitioning"
   },
   {
-    "objectID": "index.html#when-do-people-use-it",
-    "href": "index.html#when-do-people-use-it",
-    "title": "Causal Inference & DAGs in Ecology",
-    "section": "When do people use it?",
-    "text": "When do people use it?"
+    "objectID": "index.html#what-is-causal-inference-not",
+    "href": "index.html#what-is-causal-inference-not",
+    "title": "Causal Inference & DAGs",
+    "section": "What is causal inference NOT?",
+    "text": "What is causal inference NOT?\n\n prediction!! forecasting!! \n\n\n\nif we want to use our models to estimate data in places or times that we do not have data for, but we DO NOT CARE about the relationships between the things in our model, that is prediction and not causal inference\nprediction is cool!! it is however, not what we do in our lab (for now…)\nAIC is a tool for measuring the predictive power of your model - it is not appropriate for our purposes"
   },
   {
-    "objectID": "index.html#why-do-people-use-it",
-    "href": "index.html#why-do-people-use-it",
-    "title": "Causal Inference & DAGs in Ecology",
-    "section": "Why do people use it?",
-    "text": "Why do people use it?"
+    "objectID": "index.html#who-uses-causal-inference",
+    "href": "index.html#who-uses-causal-inference",
+    "title": "Causal Inference & DAGs",
+    "section": "Who uses causal inference?",
+    "text": "Who uses causal inference?\n\n\nEcology: Arif & MacNeil 2022, Siegel & Dee, 2025, Laubach et al, 2021\nPublic health: Glass et al, 2013, Matthay & Glymour, 2022\nSociologists & ethnography: Knight & Winship 2013, Brett & Silver 2024, Snodgrass et al 2024\nMachine learning\n Anyone who has observational data (and sometimes experimental data) and wants to understand a cause and effect relationship in their system"
   },
   {
-    "objectID": "index.html#how-dags-support-causal-inference",
-    "href": "index.html#how-dags-support-causal-inference",
-    "title": "Causal Inference & DAGs in Ecology",
-    "section": "How DAGs support causal inference",
-    "text": "How DAGs support causal inference"
+    "objectID": "index.html#when-do-people-use-causal-inference",
+    "href": "index.html#when-do-people-use-causal-inference",
+    "title": "Causal Inference & DAGs",
+    "section": "When do people use causal inference?",
+    "text": "When do people use causal inference?\n\n\nLevel 1: association\n\nhow are the variables related? how does changing X shift my belief in Y?\nexample: what does canopy cover tell us about air temperature?\n\n\n\n\n\nJudea Pearl’s Book of Why"
+  },
+  {
+    "objectID": "index.html#when-do-people-use-causal-inference-1",
+    "href": "index.html#when-do-people-use-causal-inference-1",
+    "title": "Causal Inference & DAGs",
+    "section": "When do people use causal inference?",
+    "text": "When do people use causal inference?\n\n\nLevel 2: intervention\n\nwhat would Y be if i do X?\nexample: how will bird species richness increase if i move from a park to a backyard?\n\n\n\n\n\nJudea Pearl’s Book of Why"
+  },
+  {
+    "objectID": "index.html#when-do-people-use-causal-inference-2",
+    "href": "index.html#when-do-people-use-causal-inference-2",
+    "title": "Causal Inference & DAGs",
+    "section": "When do people use causal inference?",
+    "text": "When do people use causal inference?\n\n\nLevel 3: counterfactuals\n\nwhat if X had not occurred? is it X that caused Y?\nexample: would survey respondents prefer different green space features if they lived in a different borough?\n\n\n\n\n\nJudea Pearl’s Book of Why"
+  },
+  {
+    "objectID": "index.html#how-do-i-do-causal-inference",
+    "href": "index.html#how-do-i-do-causal-inference",
+    "title": "Causal Inference & DAGs",
+    "section": "How do I do causal inference?",
+    "text": "How do I do causal inference?\n\n\n\nDAGs (directed acyclic graphs)!\narrows indicate a causal relationship from one variable to another\nuse your expert knowledge + literature to outline your system with your hypotheses and assumptions (you already make assumptions now, you just don’t visualize them!)\nadjust your statistical test (e.g., model) using your DAG"
+  },
+  {
+    "objectID": "index.html#why-do-dags-matter",
+    "href": "index.html#why-do-dags-matter",
+    "title": "Causal Inference & DAGs",
+    "section": "Why do DAGs matter?",
+    "text": "Why do DAGs matter?\n\nputting everything in your model does not test the relationship(s) you are interested in\n\n\n\n\ncomplex systems have confounders that mislead us and that we need to adjust for\nadjustments are dependent on our DAG and the variable of interest\n\n\n\n\n\nStatistical Rethinking, Lecture 5"
   },
   {
     "objectID": "index.html#confounders---fork",
     "href": "index.html#confounders---fork",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Confounders - fork",
     "text": "Confounders - fork"
   },
   {
     "objectID": "index.html#confounders---pipe",
     "href": "index.html#confounders---pipe",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Confounders - pipe",
     "text": "Confounders - pipe"
   },
   {
     "objectID": "index.html#confounders---collider",
     "href": "index.html#confounders---collider",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Confounders - collider",
     "text": "Confounders - collider"
   },
   {
     "objectID": "index.html#confounders---descendant",
     "href": "index.html#confounders---descendant",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Confounders - descendant",
     "text": "Confounders - descendant"
   },
   {
     "objectID": "index.html#confounders---post-treatment-bias",
     "href": "index.html#confounders---post-treatment-bias",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Confounders - post-treatment bias",
     "text": "Confounders - post-treatment bias"
   },
   {
     "objectID": "index.html#do-calculus",
     "href": "index.html#do-calculus",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "do-calculus",
     "text": "do-calculus"
   },
   {
     "objectID": "index.html#backdoor-paths",
     "href": "index.html#backdoor-paths",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Backdoor paths",
     "text": "Backdoor paths"
   },
   {
     "objectID": "index.html#closing-backdoor-paths",
     "href": "index.html#closing-backdoor-paths",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Closing backdoor paths",
     "text": "Closing backdoor paths"
   },
   {
     "objectID": "index.html#dagitty.net---example",
     "href": "index.html#dagitty.net---example",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "dagitty.net - example",
     "text": "dagitty.net - example"
   },
   {
     "objectID": "index.html#table-2-fallacy",
     "href": "index.html#table-2-fallacy",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Table 2 fallacy",
     "text": "Table 2 fallacy"
   },
   {
     "objectID": "index.html#resources",
     "href": "index.html#resources",
-    "title": "Causal Inference & DAGs in Ecology",
+    "title": "Causal Inference & DAGs",
     "section": "Resources",
     "text": "Resources"
   }
