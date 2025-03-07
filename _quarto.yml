@@ -1,0 +1,7 @@
+project:
+  title: "Causal Inference Workshop"
+  type: website
+  output-dir: docs
+
+
+from: markdown+emoji
