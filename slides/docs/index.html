@@ -321,26 +321,55 @@
 <section id="confounders---descendant" class="slide level2">
 <h2>Confounders - descendant</h2>
 </section>
-<section id="confounders---post-treatment-bias" class="slide level2">
-<h2>Confounders - post-treatment bias</h2>
+<section id="adjusting-your-models-for-confounders" class="slide level2">
+<h2>Adjusting your models for confounders</h2>
+<ul>
+<li><p>to test the effect of X on Y, we need to identify which variables we need to adjust (aka add to the model) to block all confounding paths</p></li>
+<li><p>confounders are complex when there are more than 4 or 5 variables in the system</p></li>
+<li><p>to figure out what variables you need to adjust, we can use dagitty!</p></li>
+</ul>
 </section>
-<section id="do-calculus" class="slide level2">
-<h2>do-calculus</h2>
+<section id="some-dag-notes-a-petit-sermon" class="slide level2 smaller">
+<h2>Some DAG notes / a petit sermon</h2>
+<ol type="1">
+<li><p>variables that do not have shared causes in your system do not need to be included - your DAG does not need to include every variable in the world</p></li>
+<li><p>do NOT exclude variables just because you haven’t measured them, these are still potential confounders and need to be part of your DAG!</p></li>
+<li><p>you are an expert with good intuition and expertise, don’t be scared to put your assumptions down on paper</p></li>
+<li><p>presenting the assumptions you are making about your system is good, transparent science and allows the development of the field</p>
+<ul>
+<li>!! you are doing this anyways !! when you decide what variables to collect / what to include in your models, you are just being less transparent about it! we must always do our best and be brave!</li>
+</ul></li>
+</ol>
 </section>
-<section id="backdoor-paths" class="slide level2">
-<h2>Backdoor paths</h2>
-</section>
-<section id="closing-backdoor-paths" class="slide level2">
-<h2>Closing backdoor paths</h2>
-</section>
-<section id="dagitty.net---example" class="slide level2">
-<h2>dagitty.net - example</h2>
-</section>
+<section id="dagitty.net---crowd-sourced-example" class="slide level2">
+<h2>dagitty.net - crowd-sourced example</h2>
+
+<img data-src="presentation_imgs/dagitty.png" class="r-stretch"></section>
 <section id="table-2-fallacy" class="slide level2">
 <h2>Table 2 fallacy</h2>
+<ul>
+<li>each variable has its own set of adjustments it needs in order to test its effects</li>
+<li>therefore, <strong>not all coefficients in a summary table are causal relationships</strong>
+<ul>
+<li>check your DAG!</li>
+</ul></li>
+<li>this is described as the “Table 2 Fallacy” - we can only interpret the effect(s) that we have adjusted for, not everything in our summary table</li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/23371353/">The table 2 fallacy: presenting and interpreting confounder and modifier coefficients</a></li>
+</ul>
 </section>
-<section id="resources" class="slide level2">
+<section id="resources" class="slide level2 scrollable">
 <h2>Resources</h2>
+<ul>
+<li><a href="https://github.com/rmcelreath/stat_rethinking_2024">Statistical Rethinking</a></li>
+<li><a href="https://bayes.cs.ucla.edu/home.htm">Judea Pearl</a></li>
+<li><a href="https://www.r-causal.org/">Causal Inference in R</a></li>
+<li><a href="https://r-causal.github.io/ggdag/articles/intro-to-dags.html">ggdag: Intro to DAGs</a></li>
+<li><a href="https://www.andrewheiss.com/blog/2021/09/07/do-calculus-backdoors/">Andrew Heiss: do-calculus and backdoor paths</a></li>
+<li><a href="https://doi.org/10.1002/fee.2530">Addicot et al 2022. Toward an improved understanding of causation in the ecological sciences.</a></li>
+<li><a href="https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecy.3942">Stewart et al 2023. Model selection in occupancy models: Inference versus prediction</a></li>
+<li><a href="https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecy.3336">Tredennick et al 2021. A practical guide to selecting models for exploration, inference, and prediction in ecology</a></li>
+<li><a href="https://royalsocietypublishing.org/doi/10.1098/rspb.2020.2815">Laubach et al.&nbsp;2021. A biologist’s guide to model selection and causal inference</a></li>
+</ul>
 
 
 </section>
