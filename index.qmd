@@ -173,17 +173,46 @@ Level 3: *counterfactuals*
 
 ## Confounders - descendant
 
-## Confounders - post-treatment bias
+## Adjusting your models for confounders
 
-## do-calculus
+-   to test the effect of X on Y, we need to identify which variables we need to adjust (aka add to the model) to block all confounding paths
 
-## Backdoor paths
+-   confounders are complex when there are more than 4 or 5 variables in the system
 
-## Closing backdoor paths
+-   to figure out what variables you need to adjust, we can use dagitty!
 
-## dagitty.net - example
+## Some DAG notes / a petit sermon {.smaller}
+
+1.  variables that do not have shared causes in your system do not need to be included - your DAG does not need to include every variable in the world
+
+2.  do NOT exclude variables just because you haven't measured them, these are still potential confounders and need to be part of your DAG!
+
+3.  you are an expert with good intuition and expertise, don't be scared to put your assumptions down on paper
+
+4.  presenting the assumptions you are making about your system is good, transparent science and allows the development of the field
+
+    -   !! you are doing this anyways !! when you decide what variables to collect / what to include in your models, you are just being less transparent about it! we must always do our best and be brave!
+
+## dagitty.net - crowd-sourced example
+
+![](presentation_imgs/dagitty.png)
 
 ## Table 2 fallacy
 
-## Resources
+-   each variable has its own set of adjustments it needs in order to test its effects
+-   therefore, **not all coefficients in a summary table are causal relationships**
+    -   check your DAG!
+-   this is described as the "Table 2 Fallacy" - we can only interpret the effect(s) that we have adjusted for, not everything in our summary table
+-   [The table 2 fallacy: presenting and interpreting confounder and modifier coefficients](https://pubmed.ncbi.nlm.nih.gov/23371353/)
 
+## Resources {.scrollable}
+
+-   [Statistical Rethinking](https://github.com/rmcelreath/stat_rethinking_2024)
+-   [Judea Pearl](https://bayes.cs.ucla.edu/home.htm)
+-   [Causal Inference in R](https://www.r-causal.org/)
+-   [ggdag: Intro to DAGs](https://r-causal.github.io/ggdag/articles/intro-to-dags.html)
+-   [Andrew Heiss: do-calculus and backdoor paths](https://www.andrewheiss.com/blog/2021/09/07/do-calculus-backdoors/)
+-   [Addicot et al 2022. Toward an improved understanding of causation in the ecological sciences.](https://doi.org/10.1002/fee.2530)
+-   [Stewart et al 2023. Model selection in occupancy models: Inference versus prediction](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecy.3942)
+-   [Tredennick et al 2021. A practical guide to selecting models for exploration, inference, and prediction in ecology](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecy.3336)
+-   [Laubach et al. 2021. A biologist's guide to model selection and causal inference](https://royalsocietypublishing.org/doi/10.1098/rspb.2020.2815)

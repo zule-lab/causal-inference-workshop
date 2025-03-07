@@ -105,52 +105,38 @@
     "text": "Confounders - descendant"
   },
   {
-    "objectID": "index.html#confounders---post-treatment-bias",
-    "href": "index.html#confounders---post-treatment-bias",
+    "objectID": "index.html#adjusting-your-models-for-confounders",
+    "href": "index.html#adjusting-your-models-for-confounders",
     "title": "Causal Inference & DAGs",
-    "section": "Confounders - post-treatment bias",
-    "text": "Confounders - post-treatment bias"
+    "section": "Adjusting your models for confounders",
+    "text": "Adjusting your models for confounders\n\nto test the effect of X on Y, we need to identify which variables we need to adjust (aka add to the model) to block all confounding paths\nconfounders are complex when there are more than 4 or 5 variables in the system\nto figure out what variables you need to adjust, we can use dagitty!"
   },
   {
-    "objectID": "index.html#do-calculus",
-    "href": "index.html#do-calculus",
+    "objectID": "index.html#some-dag-notes-a-petit-sermon",
+    "href": "index.html#some-dag-notes-a-petit-sermon",
     "title": "Causal Inference & DAGs",
-    "section": "do-calculus",
-    "text": "do-calculus"
+    "section": "Some DAG notes / a petit sermon",
+    "text": "Some DAG notes / a petit sermon\n\nvariables that do not have shared causes in your system do not need to be included - your DAG does not need to include every variable in the world\ndo NOT exclude variables just because you haven’t measured them, these are still potential confounders and need to be part of your DAG!\nyou are an expert with good intuition and expertise, don’t be scared to put your assumptions down on paper\npresenting the assumptions you are making about your system is good, transparent science and allows the development of the field\n\n!! you are doing this anyways !! when you decide what variables to collect / what to include in your models, you are just being less transparent about it! we must always do our best and be brave!"
   },
   {
-    "objectID": "index.html#backdoor-paths",
-    "href": "index.html#backdoor-paths",
+    "objectID": "index.html#dagitty.net---crowd-sourced-example",
+    "href": "index.html#dagitty.net---crowd-sourced-example",
     "title": "Causal Inference & DAGs",
-    "section": "Backdoor paths",
-    "text": "Backdoor paths"
-  },
-  {
-    "objectID": "index.html#closing-backdoor-paths",
-    "href": "index.html#closing-backdoor-paths",
-    "title": "Causal Inference & DAGs",
-    "section": "Closing backdoor paths",
-    "text": "Closing backdoor paths"
-  },
-  {
-    "objectID": "index.html#dagitty.net---example",
-    "href": "index.html#dagitty.net---example",
-    "title": "Causal Inference & DAGs",
-    "section": "dagitty.net - example",
-    "text": "dagitty.net - example"
+    "section": "dagitty.net - crowd-sourced example",
+    "text": "dagitty.net - crowd-sourced example"
   },
   {
     "objectID": "index.html#table-2-fallacy",
     "href": "index.html#table-2-fallacy",
     "title": "Causal Inference & DAGs",
     "section": "Table 2 fallacy",
-    "text": "Table 2 fallacy"
+    "text": "Table 2 fallacy\n\neach variable has its own set of adjustments it needs in order to test its effects\ntherefore, not all coefficients in a summary table are causal relationships\n\ncheck your DAG!\n\nthis is described as the “Table 2 Fallacy” - we can only interpret the effect(s) that we have adjusted for, not everything in our summary table\nThe table 2 fallacy: presenting and interpreting confounder and modifier coefficients"
   },
   {
     "objectID": "index.html#resources",
     "href": "index.html#resources",
     "title": "Causal Inference & DAGs",
     "section": "Resources",
-    "text": "Resources"
+    "text": "Resources\n\nStatistical Rethinking\nJudea Pearl\nCausal Inference in R\nggdag: Intro to DAGs\nAndrew Heiss: do-calculus and backdoor paths\nAddicot et al 2022. Toward an improved understanding of causation in the ecological sciences.\nStewart et al 2023. Model selection in occupancy models: Inference versus prediction\nTredennick et al 2021. A practical guide to selecting models for exploration, inference, and prediction in ecology\nLaubach et al. 2021. A biologist’s guide to model selection and causal inference"
   }
 ]
