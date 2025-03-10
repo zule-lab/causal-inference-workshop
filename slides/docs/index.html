@@ -595,7 +595,7 @@
 </div>
 </div>
 </div>
-<p>(simplified) EXAMPLE: the effect of canopy cover on temperature</p>
+<p>EXAMPLE: the effect of canopy cover on temperature (simplified)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggdag)</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
@@ -647,7 +647,7 @@
 <div class="column" style="width:60%;">
 <ul>
 <li><p>X and Y are associated</p></li>
-<li><p>influence of X on Y is trasmitted through Z</p></li>
+<li><p>influence of X on Y is transmitted through Z</p></li>
 <li><p>Once stratified by Z, X and Y have no association</p></li>
 </ul>
 </div><div class="column" style="width:40%;">
@@ -687,6 +687,36 @@
 </section>
 <section id="confounders-collider" class="slide level2 scrollable">
 <h2>Confounders: collider</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>X and Y are not associated (share no causes)</p></li>
+<li><p>X and Y both influence Z</p></li>
+<li><p>Once stratified by Z, X and Y appear associated</p></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/collider.png"></p>
+<p></p><figcaption>Statistical Rethinking, Lecture 5</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>EXAMPLE: public and private tree species richness</p>
+<ul>
+<li>both public tree species richness and private tree species richness contribute to the urban forest’s functional diversity</li>
+<li>however, public tree species richness does not influence private tree species richness and vice versa</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/collider-dag-1.png" width="960"></p>
+</div>
+</div>
+<ul>
+<li><p>BUT if we have a model for private tree species richness with both urban forest functional diversity and public tree species richness included, an association between public and private species richness will appear when it does not truly exist</p></li>
+<li><p>“spurious correlation”</p></li>
+</ul>
 </section>
 <section id="confounders-descendant" class="slide level2 scrollable">
 <h2>Confounders: descendant</h2>

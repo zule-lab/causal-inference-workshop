@@ -166,24 +166,21 @@ Level 3: *counterfactuals*
 
 ## Confounders: fork {.scrollable}
 
-::: columns 
-
+::: columns
 ::: {.column width="60%"}
-
 -   Z is a common cause of both X and Y
 
 -   X and Y are associated
 
 -   Once stratified by Z, X and Y have no association
-
-::: 
+:::
 
 ::: {.column width="40%"}
 ![Statistical Rethinking, Lecture 5](presentation_imgs/fork.png)
 :::
 :::
 
-(simplified) EXAMPLE: the effect of canopy cover on temperature 
+EXAMPLE: the effect of canopy cover on temperature (simplified)
 
 ```{r}
 #| echo: true
@@ -210,7 +207,7 @@ ggdag(fork_dag, text = FALSE, use_labels = "label") + theme_dag()
 
 ```
 
--   how do we know how to adjust our model? 
+-   how do we know how to adjust our model?
 
 ```{r}
 #| echo: true
@@ -225,7 +222,7 @@ ggdag_adjustment_set(fork_dag, effect = "direct", text = FALSE, use_labels = "la
 ```
 
 -   our DAG shows us that if we want to understand the effect of canopy cover on temperature, we need to add sky view factor to our model ("adjust for sky view factor")
--   our model may look something like this: 
+-   our model may look something like this:
 
 ```{r}
 #| echo: true
@@ -243,20 +240,18 @@ temp_model <- lmer(temperature ~ canopy + SVF + (1|date),
 ```
 
 ## Confounders: pipe {.scrollable}
--   what if we want to use the same example but understand the effect of SVF on temperature? 
--   this is now a different type of collider, a pipe! 
 
-::: columns 
+-   what if we want to use the same example but understand the effect of SVF on temperature?
+-   this is now a different type of collider, a pipe!
 
+::: columns
 ::: {.column width="60%"}
-
 -   X and Y are associated
 
--   influence of X on Y is trasmitted through Z 
+-   influence of X on Y is transmitted through Z
 
 -   Once stratified by Z, X and Y have no association
-
-::: 
+:::
 
 ::: {.column width="40%"}
 ![Statistical Rethinking, Lecture 5](presentation_imgs/pipe.png)
@@ -286,9 +281,8 @@ ggdag(pipe_dag, text = FALSE, use_labels = "label") + theme_dag()
 
 ```
 
--   the effect of SVF on temperature is both a direct effect and an effect that pipes through canopy 
--   if we want to understand the total effect of sky view factor on temperature, we DO NOT add canopy to our models 
-
+-   the effect of SVF on temperature is both a direct effect and an effect that pipes through canopy
+-   if we want to understand the total effect of sky view factor on temperature, we DO NOT add canopy to our models
 
 ```{r}
 #| echo: true
@@ -301,9 +295,10 @@ ggdag_adjustment_set(pipe_dag, effect = "total", text = FALSE, use_labels = "lab
   theme_dag()
 
 ```
--   there is no adjustment set! everything rests "unadjusted" 
+
+-   there is no adjustment set! everything rests "unadjusted"
 -   because the effect of SVF goes through canopy, adding canopy to your model blocks that effect
--   your model might look like this: 
+-   your model might look like this:
 
 ```{r}
 #| echo: true
@@ -317,9 +312,55 @@ temp_model <- lmer(temperature ~ SVF + (1|date),
 
 ```
 
-
-
 ## Confounders: collider {.scrollable}
+
+::: columns
+
+::: {.column width="60%"}
+-   X and Y are not associated (share no causes)
+
+-   X and Y both influence Z
+
+-   Once stratified by Z, X and Y appear associated
+:::
+
+::: {.column width="40%"}
+![Statistical Rethinking, Lecture 5](presentation_imgs/collider.png)
+:::
+
+:::
+
+
+EXAMPLE: public and private tree species richness
+
+-   both public tree species richness and private tree species richness contribute to the urban forest's functional diversity
+-   however, public tree species richness does not influence private tree species richness and vice versa 
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: collider-dag
+
+collider_dag <- dagify(
+  func ~ public + private,
+  labels = c(
+    "func" = "Urban Forest Functional Diversity",
+    "public" = "Public Tree Species Richness",
+    "private" = "Private Tree Species Richness"
+  ),
+  coords = list(x = c(public = -1, func = 0, private = 1), 
+                y = c(public = 0, func = 0, private = 0))
+)
+
+ggdag(collider_dag, text = FALSE, use_labels = "label") + theme_dag()
+
+```
+
+-   BUT if we have a model for private tree species richness with both urban forest functional diversity and public tree species richness included, an association between public and private species richness will appear when it does not truly exist
+
+-   "spurious correlation"
 
 ## Confounders: descendant {.scrollable}
 
