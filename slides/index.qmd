@@ -391,7 +391,7 @@ ggdag(collider_dag, text = FALSE, use_labels = "label") + theme_dag()
 #| warning: false
 #| label: descendant-dag
 
-collider_dag <- dagify(
+descendant_dag <- dagify(
   bird ~ native,
   native ~ land,
   invasive ~ native,
@@ -405,7 +405,7 @@ collider_dag <- dagify(
                 y = c(land = 0.5, native = 0.5, invasive = 0, bird = 0.75))
 )
 
-ggdag(collider_dag, text = FALSE, use_labels = "label") + theme_dag()
+ggdag(descendant_dag, text = FALSE, use_labels = "label") + theme_dag()
 
 ```
 
