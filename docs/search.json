@@ -77,32 +77,32 @@
     "text": "Why do DAGs matter?\n\nputting everything in your model does not test the relationship(s) you are interested in\n\n\n\n\ncomplex systems have confounders that mislead us and that we need to adjust for\nadjustments are dependent on our DAG and the variable of interest\n\n\n\n\n\nStatistical Rethinking, Lecture 5"
   },
   {
-    "objectID": "index.html#confounders---fork",
-    "href": "index.html#confounders---fork",
+    "objectID": "index.html#confounders-fork",
+    "href": "index.html#confounders-fork",
     "title": "Causal Inference & DAGs",
-    "section": "Confounders - fork",
-    "text": "Confounders - fork"
+    "section": "Confounders: fork",
+    "text": "Confounders: fork\n\n\n\nZ is a common cause of both X and Y\nX and Y are associated\nOnce stratified by Z, X and Y have no association\n\n\n\n\n\nStatistical Rethinking, Lecture 5\n\n\n\n\n(simplified) EXAMPLE: the effect of canopy cover on temperature\n\nlibrary(ggdag)\n\nfork_dag <- dagify(\n  temp ~ canopy + SVF,\n  canopy ~ SVF,\n  labels = c(\n    \"temp\" = \"Temperature\",\n    \"canopy\" = \"Canopy Cover\",\n    \"SVF\" = \"Sky View Factor\"\n  ),\n  exposure = \"canopy\",\n  outcome = \"temp\"\n)\n\nggdag(fork_dag, text = FALSE, use_labels = \"label\") + theme_dag()\n\n\n\n\n\nhow do we know how to adjust our model?\n\n\nggdag_adjustment_set(fork_dag, effect = \"direct\", text = FALSE, use_labels = \"label\", shadow = TRUE) + \n  theme_dag()\n\n\n\n\n\nour DAG shows us that if we want to understand the effect of canopy cover on temperature, we need to add sky view factor to our model (“adjust for sky view factor”)\nour model may look something like this:\n\n\nlibrary(lme4)\n\ntemp_model <- lmer(temperature ~ canopy + SVF + (1|date),\n                   data = temp_df)"
   },
   {
-    "objectID": "index.html#confounders---pipe",
-    "href": "index.html#confounders---pipe",
+    "objectID": "index.html#confounders-pipe",
+    "href": "index.html#confounders-pipe",
     "title": "Causal Inference & DAGs",
-    "section": "Confounders - pipe",
-    "text": "Confounders - pipe"
+    "section": "Confounders: pipe",
+    "text": "Confounders: pipe\n\nwhat if we want to use the same example but understand the effect of SVF on temperature?\nthis is now a different type of collider, a pipe!\n\n\n\n\nX and Y are associated\ninfluence of X on Y is trasmitted through Z\nOnce stratified by Z, X and Y have no association\n\n\n\n\n\nStatistical Rethinking, Lecture 5\n\n\n\n\n\n\n\n\n\n\nthe effect of SVF on temperature is both a direct effect and an effect that pipes through canopy\nif we want to understand the total effect of sky view factor on temperature, we DO NOT add canopy to our models\n\n\nggdag_adjustment_set(pipe_dag, effect = \"total\", text = FALSE, use_labels = \"label\", shadow = TRUE) + \n  theme_dag()\n\n\n\n\n\nthere is no adjustment set! everything rests “unadjusted”\nbecause the effect of SVF goes through canopy, adding canopy to your model blocks that effect\nyour model might look like this:\n\n\ntemp_model <- lmer(temperature ~ SVF + (1|date),\n                   data = temp_df)"
   },
   {
-    "objectID": "index.html#confounders---collider",
-    "href": "index.html#confounders---collider",
+    "objectID": "index.html#confounders-collider",
+    "href": "index.html#confounders-collider",
     "title": "Causal Inference & DAGs",
-    "section": "Confounders - collider",
-    "text": "Confounders - collider"
+    "section": "Confounders: collider",
+    "text": "Confounders: collider"
   },
   {
-    "objectID": "index.html#confounders---descendant",
-    "href": "index.html#confounders---descendant",
+    "objectID": "index.html#confounders-descendant",
+    "href": "index.html#confounders-descendant",
     "title": "Causal Inference & DAGs",
-    "section": "Confounders - descendant",
-    "text": "Confounders - descendant"
+    "section": "Confounders: descendant",
+    "text": "Confounders: descendant"
   },
   {
     "objectID": "index.html#adjusting-your-models-for-confounders",

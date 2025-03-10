@@ -4,7 +4,6 @@ date: "March 11, 2025"
 format:
   revealjs:
     theme: dark
-editor: visual
 ---
 
 ## This workshop is plagiarism!!
@@ -167,10 +166,158 @@ Level 3: *counterfactuals*
 
 ## Confounders: fork {.scrollable}
 
+::: columns 
+
+::: {.column width="60%"}
+
+-   Z is a common cause of both X and Y
+
+-   X and Y are associated
+
+-   Once stratified by Z, X and Y have no association
+
+::: 
+
+::: {.column width="40%"}
+![Statistical Rethinking, Lecture 5](presentation_imgs/fork.png)
+:::
+:::
+
+(simplified) EXAMPLE: the effect of canopy cover on temperature 
+
+```{r}
+#| echo: true
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fork-dag
+
+library(ggdag)
+
+fork_dag <- dagify(
+  temp ~ canopy + SVF,
+  canopy ~ SVF,
+  labels = c(
+    "temp" = "Temperature",
+    "canopy" = "Canopy Cover",
+    "SVF" = "Sky View Factor"
+  ),
+  exposure = "canopy",
+  outcome = "temp"
+)
+
+ggdag(fork_dag, text = FALSE, use_labels = "label") + theme_dag()
+
+```
+
+-   how do we know how to adjust our model? 
+
+```{r}
+#| echo: true
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fork-dag-adjustment
+
+ggdag_adjustment_set(fork_dag, effect = "direct", text = FALSE, use_labels = "label", shadow = TRUE) + 
+  theme_dag()
+
+```
+
+-   our DAG shows us that if we want to understand the effect of canopy cover on temperature, we need to add sky view factor to our model ("adjust for sky view factor")
+-   our model may look something like this: 
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+#| label: fork-dag-model
+
+library(lme4)
+
+temp_model <- lmer(temperature ~ canopy + SVF + (1|date),
+                   data = temp_df)
 
 
+```
 
 ## Confounders: pipe {.scrollable}
+-   what if we want to use the same example but understand the effect of SVF on temperature? 
+-   this is now a different type of collider, a pipe! 
+
+::: columns 
+
+::: {.column width="60%"}
+
+-   X and Y are associated
+
+-   influence of X on Y is trasmitted through Z 
+
+-   Once stratified by Z, X and Y have no association
+
+::: 
+
+::: {.column width="40%"}
+![Statistical Rethinking, Lecture 5](presentation_imgs/pipe.png)
+:::
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: pipe-dag
+
+pipe_dag <- dagify(
+  temp ~ canopy + SVF,
+  canopy ~ SVF,
+  labels = c(
+    "temp" = "Temperature",
+    "canopy" = "Canopy Cover",
+    "SVF" = "Sky View Factor"
+  ),
+  exposure = "SVF",
+  outcome = "temp"
+)
+
+ggdag(pipe_dag, text = FALSE, use_labels = "label") + theme_dag()
+
+```
+
+-   the effect of SVF on temperature is both a direct effect and an effect that pipes through canopy 
+-   if we want to understand the total effect of sky view factor on temperature, we DO NOT add canopy to our models 
+
+
+```{r}
+#| echo: true
+#| eval: true
+#| message: false
+#| warning: false
+#| label: pipe-dag-adjustment
+
+ggdag_adjustment_set(pipe_dag, effect = "total", text = FALSE, use_labels = "label", shadow = TRUE) + 
+  theme_dag()
+
+```
+-   there is no adjustment set! everything rests "unadjusted" 
+-   because the effect of SVF goes through canopy, adding canopy to your model blocks that effect
+-   your model might look like this: 
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+#| label: pipe-dag-model
+
+temp_model <- lmer(temperature ~ SVF + (1|date),
+                   data = temp_df)
+
+```
+
+
 
 ## Confounders: collider {.scrollable}
 
