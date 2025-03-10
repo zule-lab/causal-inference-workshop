@@ -607,11 +607,13 @@
 <span id="cb1-8"><a href="#cb1-8"></a>    <span class="st">"canopy"</span> <span class="ot">=</span> <span class="st">"Canopy Cover"</span>,</span>
 <span id="cb1-9"><a href="#cb1-9"></a>    <span class="st">"SVF"</span> <span class="ot">=</span> <span class="st">"Sky View Factor"</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>  ),</span>
-<span id="cb1-11"><a href="#cb1-11"></a>  <span class="at">exposure =</span> <span class="st">"canopy"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>  <span class="at">outcome =</span> <span class="st">"temp"</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>)</span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">ggdag</span>(fork_dag, <span class="at">text =</span> <span class="cn">FALSE</span>, <span class="at">use_labels =</span> <span class="st">"label"</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="at">coords =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="at">canopy =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">SVF =</span> <span class="dv">0</span>, <span class="at">temp =</span> <span class="dv">1</span>), </span>
+<span id="cb1-12"><a href="#cb1-12"></a>                <span class="at">y =</span> <span class="fu">c</span>(<span class="at">canopy =</span> <span class="dv">1</span>, <span class="at">SVF =</span> <span class="dv">0</span>, <span class="at">temp =</span> <span class="dv">1</span>)),</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="at">exposure =</span> <span class="st">"canopy"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="at">outcome =</span> <span class="st">"temp"</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="fu">ggdag</span>(fork_dag, <span class="at">text =</span> <span class="cn">FALSE</span>, <span class="at">use_labels =</span> <span class="st">"label"</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="index_files/figure-revealjs/fork-dag-1.png" width="960"></p>
 </div>
@@ -720,6 +722,33 @@
 </section>
 <section id="confounders-descendant" class="slide level2 scrollable">
 <h2>Confounders: descendant</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>descendant can be different depending on what it is attached to</p></li>
+<li><p>X and Y are causally associated through Z</p></li>
+<li><p>A holds information about Z</p></li>
+<li><p>if stratified by A, X and Y are less associated</p></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentation_imgs/descendant.png"></p>
+<p></p><figcaption>Statistical Rethinking, Lecture 5</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/descendant-dag-1.png" width="960"></p>
+</div>
+</div>
+<ul>
+<li>we know from before that we shouldn’t add proportion of native trees to our model if we want to test the effect of land use type on bird behaviour because its a pipe</li>
+<li>because proportion of invasive trees is a descendant, adding it to the model will have the same effect but weaker</li>
+<li>descendants can be used as proxies for our variables of interest</li>
+</ul>
 </section>
 <section id="adjusting-your-models-for-confounders" class="slide level2">
 <h2>Adjusting your models for confounders</h2>
@@ -741,10 +770,6 @@
 </ul></li>
 </ol>
 </section>
-<section id="dagitty.net---crowd-sourced-example" class="slide level2">
-<h2>dagitty.net - crowd-sourced example</h2>
-
-<img data-src="presentation_imgs/dagitty.png" class="r-stretch"></section>
 <section id="table-2-fallacy" class="slide level2">
 <h2>Table 2 fallacy</h2>
 <ul>
@@ -757,6 +782,10 @@
 <li><a href="https://pubmed.ncbi.nlm.nih.gov/23371353/">The table 2 fallacy: presenting and interpreting confounder and modifier coefficients</a></li>
 </ul>
 </section>
+<section id="dagitty.net---crowd-sourced-example" class="slide level2">
+<h2>dagitty.net - crowd-sourced example</h2>
+
+<img data-src="presentation_imgs/dagitty.png" class="r-stretch"></section>
 <section id="resources" class="slide level2 scrollable">
 <h2>Resources</h2>
 <ul>

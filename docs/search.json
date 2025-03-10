@@ -81,7 +81,7 @@
     "href": "index.html#confounders-fork",
     "title": "Causal Inference & DAGs",
     "section": "Confounders: fork",
-    "text": "Confounders: fork\n\n\n\nZ is a common cause of both X and Y\nX and Y are associated\nOnce stratified by Z, X and Y have no association\n\n\n\n\n\nStatistical Rethinking, Lecture 5\n\n\n\n\nEXAMPLE: the effect of canopy cover on temperature (simplified)\n\nlibrary(ggdag)\n\nfork_dag <- dagify(\n  temp ~ canopy + SVF,\n  canopy ~ SVF,\n  labels = c(\n    \"temp\" = \"Temperature\",\n    \"canopy\" = \"Canopy Cover\",\n    \"SVF\" = \"Sky View Factor\"\n  ),\n  exposure = \"canopy\",\n  outcome = \"temp\"\n)\n\nggdag(fork_dag, text = FALSE, use_labels = \"label\") + theme_dag()\n\n\n\n\n\nhow do we know how to adjust our model?\n\n\nggdag_adjustment_set(fork_dag, effect = \"direct\", text = FALSE, use_labels = \"label\", shadow = TRUE) + \n  theme_dag()\n\n\n\n\n\nour DAG shows us that if we want to understand the effect of canopy cover on temperature, we need to add sky view factor to our model (“adjust for sky view factor”)\nour model may look something like this:\n\n\nlibrary(lme4)\n\ntemp_model <- lmer(temperature ~ canopy + SVF + (1|date),\n                   data = temp_df)"
+    "text": "Confounders: fork\n\n\n\nZ is a common cause of both X and Y\nX and Y are associated\nOnce stratified by Z, X and Y have no association\n\n\n\n\n\nStatistical Rethinking, Lecture 5\n\n\n\n\nEXAMPLE: the effect of canopy cover on temperature (simplified)\n\nlibrary(ggdag)\n\nfork_dag <- dagify(\n  temp ~ canopy + SVF,\n  canopy ~ SVF,\n  labels = c(\n    \"temp\" = \"Temperature\",\n    \"canopy\" = \"Canopy Cover\",\n    \"SVF\" = \"Sky View Factor\"\n  ),\n  coords = list(x = c(canopy = -1, SVF = 0, temp = 1), \n                y = c(canopy = 1, SVF = 0, temp = 1)),\n  exposure = \"canopy\",\n  outcome = \"temp\"\n)\n\nggdag(fork_dag, text = FALSE, use_labels = \"label\") + theme_dag()\n\n\n\n\n\nhow do we know how to adjust our model?\n\n\nggdag_adjustment_set(fork_dag, effect = \"direct\", text = FALSE, use_labels = \"label\", shadow = TRUE) + \n  theme_dag()\n\n\n\n\n\nour DAG shows us that if we want to understand the effect of canopy cover on temperature, we need to add sky view factor to our model (“adjust for sky view factor”)\nour model may look something like this:\n\n\nlibrary(lme4)\n\ntemp_model <- lmer(temperature ~ canopy + SVF + (1|date),\n                   data = temp_df)"
   },
   {
     "objectID": "index.html#confounders-pipe",
@@ -102,7 +102,7 @@
     "href": "index.html#confounders-descendant",
     "title": "Causal Inference & DAGs",
     "section": "Confounders: descendant",
-    "text": "Confounders: descendant"
+    "text": "Confounders: descendant\n\n\n\ndescendant can be different depending on what it is attached to\nX and Y are causally associated through Z\nA holds information about Z\nif stratified by A, X and Y are less associated\n\n\n\n\n\nStatistical Rethinking, Lecture 5\n\n\n\n\n\n\n\n\n\n\nwe know from before that we shouldn’t add proportion of native trees to our model if we want to test the effect of land use type on bird behaviour because its a pipe\nbecause proportion of invasive trees is a descendant, adding it to the model will have the same effect but weaker\ndescendants can be used as proxies for our variables of interest"
   },
   {
     "objectID": "index.html#adjusting-your-models-for-confounders",
@@ -119,18 +119,18 @@
     "text": "Some DAG notes / a petit sermon\n\nvariables that do not have shared causes in your system do not need to be included - your DAG does not need to include every variable in the world\ndo NOT exclude variables just because you haven’t measured them, these are still potential confounders and need to be part of your DAG!\nyou are an expert with good intuition and expertise, don’t be scared to put your assumptions down on paper\npresenting the assumptions you are making about your system is good, transparent science and allows the development of the field\n\n!! you are doing this anyways !! when you decide what variables to collect / what to include in your models, you are just being less transparent about it! we must always do our best and be brave!"
   },
   {
-    "objectID": "index.html#dagitty.net---crowd-sourced-example",
-    "href": "index.html#dagitty.net---crowd-sourced-example",
-    "title": "Causal Inference & DAGs",
-    "section": "dagitty.net - crowd-sourced example",
-    "text": "dagitty.net - crowd-sourced example"
-  },
-  {
     "objectID": "index.html#table-2-fallacy",
     "href": "index.html#table-2-fallacy",
     "title": "Causal Inference & DAGs",
     "section": "Table 2 fallacy",
     "text": "Table 2 fallacy\n\neach variable has its own set of adjustments it needs in order to test its effects\ntherefore, not all coefficients in a summary table are causal relationships\n\ncheck your DAG!\n\nthis is described as the “Table 2 Fallacy” - we can only interpret the effect(s) that we have adjusted for, not everything in our summary table\nThe table 2 fallacy: presenting and interpreting confounder and modifier coefficients"
+  },
+  {
+    "objectID": "index.html#dagitty.net---crowd-sourced-example",
+    "href": "index.html#dagitty.net---crowd-sourced-example",
+    "title": "Causal Inference & DAGs",
+    "section": "dagitty.net - crowd-sourced example",
+    "text": "dagitty.net - crowd-sourced example"
   },
   {
     "objectID": "index.html#resources",

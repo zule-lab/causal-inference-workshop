@@ -199,6 +199,8 @@ fork_dag <- dagify(
     "canopy" = "Canopy Cover",
     "SVF" = "Sky View Factor"
   ),
+  coords = list(x = c(canopy = -1, SVF = 0, temp = 1), 
+                y = c(canopy = 1, SVF = 0, temp = 1)),
   exposure = "canopy",
   outcome = "temp"
 )
@@ -273,6 +275,8 @@ pipe_dag <- dagify(
     "canopy" = "Canopy Cover",
     "SVF" = "Sky View Factor"
   ),
+  coords = list(x = c(canopy = -1, SVF = 0, temp = 1), 
+                y = c(canopy = 1, SVF = 0, temp = 1)),
   exposure = "SVF",
   outcome = "temp"
 )
@@ -364,6 +368,52 @@ ggdag(collider_dag, text = FALSE, use_labels = "label") + theme_dag()
 
 ## Confounders: descendant {.scrollable}
 
+::: columns
+::: {.column width="60%"}
+-   descendant can be different depending on what it is attached to 
+
+-   X and Y are causally associated through Z 
+
+-   A holds information about Z
+
+-   if stratified by A, X and Y are less associated
+:::
+
+::: {.column width="40%"}
+![Statistical Rethinking, Lecture 5](presentation_imgs/descendant.png)
+:::
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: descendant-dag
+
+collider_dag <- dagify(
+  bird ~ native,
+  native ~ land,
+  invasive ~ native,
+  labels = c(
+    "bird" = "Bird Behaviour",
+    "native" = "Proportion Native Trees",
+    "invasive" = "Proportion Invasive Trees",
+    "land" = "Land Use Type"
+  ),
+  coords = list(x = c(land = -1, native = 0, invasive = 0, bird = 1), 
+                y = c(land = 0.5, native = 0.5, invasive = 0, bird = 0.75))
+)
+
+ggdag(collider_dag, text = FALSE, use_labels = "label") + theme_dag()
+
+```
+
+-   we know from before that we shouldn't add proportion of native trees to our model if we want to test the effect of land use type on bird behaviour because its a pipe
+-   because proportion of invasive trees is a descendant, adding it to the model will have the same effect but weaker 
+-   descendants can be used as proxies for our variables of interest
+
+
 ## Adjusting your models for confounders
 
 -   to test the effect of X on Y, we need to identify which variables we need to adjust (aka add to the model) to block all confounding paths
@@ -384,9 +434,6 @@ ggdag(collider_dag, text = FALSE, use_labels = "label") + theme_dag()
 
     -   !! you are doing this anyways !! when you decide what variables to collect / what to include in your models, you are just being less transparent about it! we must always do our best and be brave!
 
-## dagitty.net - crowd-sourced example
-
-![](presentation_imgs/dagitty.png)
 
 ## Table 2 fallacy
 
@@ -395,6 +442,10 @@ ggdag(collider_dag, text = FALSE, use_labels = "label") + theme_dag()
     -   check your DAG!
 -   this is described as the "Table 2 Fallacy" - we can only interpret the effect(s) that we have adjusted for, not everything in our summary table
 -   [The table 2 fallacy: presenting and interpreting confounder and modifier coefficients](https://pubmed.ncbi.nlm.nih.gov/23371353/)
+
+## dagitty.net - crowd-sourced example
+
+![](presentation_imgs/dagitty.png)
 
 ## Resources {.scrollable}
 
